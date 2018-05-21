@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+  <head>
 	<title>Plan your Day</title>
 	<link rel="stylesheet" type="text/css" href="normalize.css">
 	<link rel="stylesheet" type="text/css" href="index.css">
@@ -8,16 +8,27 @@
     <meta charset="utf-8">
     <meta name="keywords" content="things to do, what do to todays, events in my city today, trip planner, weather today, weather in my city">
     <meta name="author" content="Anna Kremer">
-</head>
-<body>
-<
+  </head>
 
+  <body>
+  	<div class="start-display">
+  		<header role="banner">
+  			<h1 class="logo">Plan your day</h1>
+  			<p class="logo-description">Find out the weather and the best venues around you in any city in the world.</p>
+  		</header>
+  		<form action="#" class="search-form">
+			<label for="js-search" class="search-label">Enter a city</label>
+			<input type="text" name="js-search" id="js-search" placeholder="San Diego" required="">
+			<button type="submit" class="js-form-submit">Search</button>  		
+  		</form>
+  	 </div>
 
+    
 
-<script
+    <script
   src="https://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
-  <script type="text/javascript" src="app.js"></script>
-</body>
+    <script type="text/javascript" src="app.js"></script>
+  </body>
 </html>
