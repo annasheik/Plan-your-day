@@ -20,3 +20,38 @@
     padding: 28px;
     max-width: 800px;
 }
+
+/* Weather-display */
+.weather-display {
+	background-color: #DEB887;
+	height: 100vh;
+	margin-top: 0;
+	padding-top: 246px;
+}
+.weather-results {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: white;
+    width: 72%;
+    border-radius: 23px;
+    max-width: 800px;
+    padding: 15px;
+}
+
+/* Category nav buttons*/
+.venues-nav{
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 138px;
+    font-size: 30px;
+}
+
+.js-category-button {
+	width: 20%;
+    border: 1px solid black;
+    margin-right: 12px;
+    padding: 2px;
+    cursor: pointer;
+}
