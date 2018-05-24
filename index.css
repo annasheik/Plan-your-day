@@ -26,7 +26,7 @@
 	background-color: #DEB887;
 	height: 100vh;
 	margin-top: 0;
-	padding-top: 246px;
+	padding-top: 152px;
 }
 .weather-results {
     margin-left: auto;
@@ -37,6 +37,23 @@
     border-radius: 23px;
     max-width: 800px;
     padding: 15px;
+}
+.h2-weather {
+	font-size: 31px;
+}
+.p-temp {
+	font-size: 26px;
+    font-weight: 550;
+    margin-right: 27px;
+}
+.weather-icon {
+	width: 66px;
+    height: 66px;
+    margin-bottom: -22px;
+}
+.weatherDescription {
+	font-size: 20px;
+    font-style: italic;
 }
 
 /* Category nav buttons*/
