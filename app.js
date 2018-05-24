@@ -42,15 +42,23 @@ function displayWeatherResults(data) {
 	$('.weather-display').html(results);
 }
 
+// Scroll to Weather Results
+function scrollToWeatherResults() {
+	$('html, body').animate({
+		scrollTop: $('.weather-display').offset().top}, 700);
+}
+
+
 //event listener for a search form
 function watchSubmit() {
 	$('.search-form').on('submit', event => {
 		console.log("Hello World");
 		event.preventDefault;
-
+        $(event.currentTarget).find('.search-query').val('');
 		
 		getDataFromWeatherAPI(displayWeatherResults);
-        $(event.currentTarget).find('.search-query').val('');
+        scrollToWeatherResults();
+        
 	});
 }
 
