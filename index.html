@@ -4,6 +4,10 @@
 	<title>Plan your Day</title>
 	<link rel="stylesheet" type="text/css" href="normalize.css">
 	<link rel="stylesheet" type="text/css" href="index.css">
+	<script
+          src="https://code.jquery.com/jquery-3.2.1.min.js"
+          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+          crossorigin="anonymous"></script>
     <meta name="description" content="Find out the weather and the best venues around you in any city in the world">
     <meta charset="utf-8">
     <meta name="keywords" content="things to do, what do to todays, events in my city today, trip planner, weather today, weather in my city">
@@ -20,7 +24,7 @@
 	  		</header>
 	  		<form action="#" class="search-form">
 				<label for="js-search" class="search-label">Enter a city</label>
-				<input type="text" name="js-search" id="js-search" placeholder="San Diego" required="">
+				<input type="text" name="js-search" class="search-query" id="js-search" placeholder="San Diego" required>
 				<button type="submit" class="js-form-submit">Search</button>  		
 	  		</form>
 	  	</div> 	
@@ -28,20 +32,7 @@
 
   	 <main role="main">
 	  	 <div class="weather-display">
-	  	 	<div class="weather-results">
-	  	 		<h2>Current weather in San Diego</h2>
-	  	 		<span>72 &#8451;</span><img src="">
-	  	 		<p>weather description</p>
-	  	 		<p>Wind</p>
-	  	 		<p>Humidity</p>
-	  	 	</div>
-
-	  	 	<nav role="navigation" class="venues-nav">
-	  	 		<button class="js-category-button">Food</button>
-	  	 		<button class="js-category-button">Events</button>
-	  	 		<button class="js-category-button">Entertainment</button>
-	  	 		<button class="js-category-button">Outdoors</button>
-	  	 	</nav>
+	  	 	<!-- Weather search results go here-->
 	  	 </div>
             
             <div class="venues-page">
@@ -102,10 +93,7 @@
 	  	</div>
         </div>
 	</main>
-    <script
-  src="https://code.jquery.com/jquery-4.4.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+    
     <script type="text/javascript" src="app.js"></script>
   </body>
 </html>
