@@ -1,3 +1,10 @@
+var searchEx = [ 'San Diego', 'London', 'Seattle', 'San Francisco', 'New York', 'Vancouver', 'Paris', 'Athens'];
+  setInterval(function() {
+    $("input#js-search").attr("placeholder", searchEx[searchEx.push(searchEx.shift())-1]);
+  }, 2000);
+
+
+
 //OpenWeatherMap API
 //Get data from OpenWeatherMap API
 
@@ -22,22 +29,21 @@ function createWeatherHTML (city, result) {
 
 return `
 <div class="weather-results">
-<h2 class="h2-weather">Current weather in ${result.name}</h2>
-<p class="p-temp"><span>${(result.main.temp).toFixed(0)} &#8451;  | ${((result.main.temp * 9/5) +32).toFixed(0)} &#8457;</span><img src="http://openweathermap.org/img/w/${result.weather[0].icon}.png" class="weather-icon"
-alt="weather icon of ${result.weather[0].main}"></p>
-<p class="weatherDescription">${result.weather[0].main}</p>
-<p>Description: ${result.weather[0].description}</p>
-<p>Humidity: ${result.main.humidity}%</p>
-<p>Wind: ${result.wind.speed} mps</p>
+	<h2 class="h2-weather">Current weather in ${result.name}</h2>
+	<p class="p-temp"><span>${(result.main.temp).toFixed(0)} &#8451;  | ${((result.main.temp * 9/5) +32).toFixed(0)} &#8457;</span><img src="http://openweathermap.org/img/w/${result.weather[0].icon}.png" class="weather-icon"
+	alt="weather icon of ${result.weather[0].main}"></p>
+	<p class="weatherDescription">${result.weather[0].main}</p>
+	<p>Description: ${result.weather[0].description}</p>
+	<p>Humidity: ${result.main.humidity}%</p>
+	<p>Wind: ${result.wind.speed} mps</p>
 </div>
 
 <nav role="navigation" class="venues-nav" data-city="${city}">
-<button class="js-category-button" data-category="food">Food</button>
-<button class="js-category-button" data-category="events">Events</button>
-<button class="js-category-button" data-category="arts">Entertainment</button>
-<button class="js-category-button" data-category="outdoors">Outdoors</button>
-</nav>
-`
+	<button class="js-category-button" data-category="food">Food</button>
+	<button class="js-category-button" data-category="events">Events</button>
+	<button class="js-category-button" data-category="arts">Entertainment</button>
+	<button class="js-category-button" data-category="outdoors">Outdoors</button>
+</nav>`
 }
 //Display weather search results - a callback function
 function displayWeatherResults(city, data) {
@@ -70,16 +76,19 @@ function watchSubmit() {
 
 //Get data from Foursquare API 
 function getDataFromFoursquareAPI (callback, category, city) {
-	const FOUSRQUARE_URL = 'https://api.foursquare.com/v2/venues/explore';
+	const FOUSRQUARE_URL = 'http://api.foursquare.com/v2/venues/explore?';
 	
 	
 	const query = {
 		client_id: 'DPOUX5ELF3MXCHKHK2DW1X4PNJXQL1H0I03LHTXLYKIVIBBM',
 		client_secret: '3Z2NZ2PVA01NDLQVSI0SGJUXGXUPENANW0GFV3RTIZQE3CZ4',
 		near: city,
+		venuePhotos: 1,
 		section: category,
 		limit: 9,
-		v: 20180520
+		v: 20180520,
+		
+
 	};
 	
 	$.getJSON(FOUSRQUARE_URL, query, callback)
@@ -88,24 +97,29 @@ function getDataFromFoursquareAPI (callback, category, city) {
 //Create Foursquare results HTML
 function createFoursquareHTML(result) {
 	return `
-	Hello
 	<div class="js-foursquare-results col-4">
 	<div class="result-description">
 	<img src="" class="result-img">
 	<h3>${result.venue.name}</h3>
-	<img src="" class="category-img">
-	<p class="result-address">${result.venue}</p>
-	<p class="result-address">${result.venue}</p>	
+	<p><img src="${result.venue.categories[0].icon.prefix}bg_32${result.venue.categories[0].icon.suffix}" class="category-img"></p>
+	</span>
+                <span class="icon-text">
+                    ${result.venue.categories[0].name}
+                </span>
+	<p class="result-address">${result.venue.location.formattedAddress[0]}</p>
+	<p class="result-address">${result.venue.location.formattedAddress[1]}</p>	
+	<p class="result-address">${result.venue.location.formattedAddress[2]}</p>
 	
 	</div>
-	</div> `
-
-	
+	</div> `	
 }
+
+
 
 //display Foursquare seach results - callback function
 function displayFoursquareResults(data) {
-	
+
+console.log(JSON.stringify(data))
 	const foursquareResults = data.response.groups[0].items.map((item) => createFoursquareHTML(item));
 	$('.venues').html(foursquareResults);
 }
@@ -115,8 +129,9 @@ function submitCategoryButton () {
 	$('main').on('click', '.js-category-button', function(event) {
 		const category = $(this).data('category');
 		const city = $(this).parent().data('city');
-		getDataFromFoursquareAPI(displayFoursquareResults, category, city);
 
+		getDataFromFoursquareAPI(displayFoursquareResults, category, city);
+        
 	})
 } 
 
@@ -125,4 +140,15 @@ function setupEventHandlers() {
 	submitCategoryButton();
 }
 
+
+
+//autocomplete location name in form
+function activatePlacesSearch() {
+    let options = {
+        types: ['(regions)']
+    };
+    let input = document.getElementById('js-search');
+    let autocomplete = new google.maps.places.Autocomplete(input, options);
+}
 $(setupEventHandlers);
+
