@@ -1,9 +1,10 @@
+// Running text in searchfield
 var searchEx = [ 'San Diego', 'London', 'Seattle', 'San Francisco', 'New York', 'Vancouver', 'Paris', 'Athens'];
   setInterval(function() {
     $("input#js-search").attr("placeholder", searchEx[searchEx.push(searchEx.shift())-1]);
   }, 2000);
 
-
+let offsetToken = 0;
 
 //OpenWeatherMap API
 //Get data from OpenWeatherMap API
@@ -87,6 +88,7 @@ function getDataFromFoursquareAPI (callback, category, city) {
 		section: category,
 		limit: 9,
 		v: 20180520,
+		offset: offsetToken
 		
 
 	};
@@ -111,7 +113,8 @@ function createFoursquareHTML(result) {
 	<p class="result-address">${result.venue.location.formattedAddress[2]}</p>
 	
 	</div>
-	</div> `	
+	</div> `
+
 }
 
 
@@ -136,12 +139,42 @@ function submitCategoryButton () {
 
 		getDataFromFoursquareAPI(displayFoursquareResults, category, city);
         scrollToFoursquareResults();
+        $('.js-next-button').prop('hidden', false);
 	})
 } 
+
+//handle Next Button
+function handleNextButton() {
+	$('.js-next-button').on('click', event => {
+     $('.js-prev-button').prop('hidden', false);
+      const category = $('.js-category-button').data('category');
+      const city = $('.js-category-button').parent().data('city');
+      offsetToken +=9;
+      getDataFromFoursquareAPI(displayFoursquareResults, category, city)
+	});	
+	}
+
+//handle Prev Button
+function handlePrevButton () {
+  $('.js-prev-button').on('click', event => {
+    const category = $('.js-category-button').data('category');
+    const city = $('.js-category-button').parent().data('city');
+    if (offsetToken > 0){
+            offsetToken = offsetToken - 9;
+            }
+        if (offsetToken === 0) {
+            $('.js-prev-button').prop('hidden', true);
+        }
+    getDataFromFoursquareAPI(displayFoursquareResults, category, city)
+  });
+}
+
 
 function setupEventHandlers() {
 	watchSubmit();
 	submitCategoryButton();
+	handleNextButton();
+	handlePrevButton();
 }
 
 
