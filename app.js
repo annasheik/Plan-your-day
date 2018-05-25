@@ -124,6 +124,10 @@ console.log(JSON.stringify(data))
 	$('.venues').html(foursquareResults);
 }
 
+function scrollToFoursquareResults() {
+	$('html, body').animate({
+		scrollTop: $('.venues-page').offset().top}, 700);
+}
 //event listener for category buttons
 function submitCategoryButton () {
 	$('main').on('click', '.js-category-button', function(event) {
@@ -131,7 +135,7 @@ function submitCategoryButton () {
 		const city = $(this).parent().data('city');
 
 		getDataFromFoursquareAPI(displayFoursquareResults, category, city);
-        
+        scrollToFoursquareResults();
 	})
 } 
 
