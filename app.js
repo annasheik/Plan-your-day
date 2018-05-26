@@ -34,9 +34,9 @@ return `
 	<p class="p-temp"><span>${(result.main.temp).toFixed(0)} &#8451;  | ${((result.main.temp * 9/5) +32).toFixed(0)} &#8457;</span><img src="http://openweathermap.org/img/w/${result.weather[0].icon}.png" class="weather-icon"
 	alt="weather icon of ${result.weather[0].main}"></p>
 	<p class="weatherDescription">${result.weather[0].main}</p>
-	<p>Description: ${result.weather[0].description}</p>
-	<p>Humidity: ${result.main.humidity}%</p>
-	<p>Wind: ${result.wind.speed} mps</p>
+	<p class='weather-p'><span class='weather-span'>Description:</span> ${result.weather[0].description}</p>
+	<p class='weather-p'><span class='weather-span'>Humidity:</span> ${result.main.humidity}%</p>
+	<p class='weather-p'><span class='weather-span'>Wind:</span> ${result.wind.speed} mps</p>
 </div>
 
 <nav role="navigation" class="venues-nav" data-city="${city}">
@@ -66,6 +66,7 @@ function watchSubmit() {
 	$('.search-form').on('submit', event => {
 		console.log("Hello World");
 		event.preventDefault();
+		$('.weather-display').prop('hidden', false);
 		const city = $('.search-query').val();
 		getDataFromWeatherAPI(city, displayWeatherResults);
 	
