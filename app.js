@@ -25,7 +25,7 @@ function getDataFromWeatherAPI (city, callback) {
 
 // Create the weather result HTML
 function createWeatherHTML (city, result) {
-	console.log('createResultHTML', result);
+
 // C to F: C * 9/5 +32
 
 return `
@@ -44,12 +44,12 @@ return `
 	<button class="js-category-button" data-category="events">Events</button>
 	<button class="js-category-button" data-category="arts">Entertainment</button>
 	<button class="js-category-button" data-category="outdoors">Outdoors</button>
-</nav>`
+</nav> `
 }
 //Display weather search results - a callback function
 function displayWeatherResults(city, data) {
 	const results = createWeatherHTML(city, data);
-	console.log(results);
+	
 	$('.weather-display').html(results);
 }
 
@@ -68,6 +68,7 @@ function watchSubmit() {
 		event.preventDefault();
 		const city = $('.search-query').val();
 		getDataFromWeatherAPI(city, displayWeatherResults);
+	
 		scrollToWeatherResults();
 		$(event.currentTarget).find('.search-query').val('');     
 	});
@@ -77,7 +78,7 @@ function watchSubmit() {
 
 //Get data from Foursquare API 
 function getDataFromFoursquareAPI (callback, category, city) {
-	const FOUSRQUARE_URL = 'http://api.foursquare.com/v2/venues/explore?';
+	const FOUSRQUARE_URL = 'https://api.foursquare.com/v2/venues/explore?';
 	
 	
 	const query = {
@@ -98,11 +99,12 @@ function getDataFromFoursquareAPI (callback, category, city) {
 
 //Create Foursquare results HTML
 function createFoursquareHTML(result) {
+	venueID = result.venue.id;
+	getFoursquarePhoto(venueID, renderFoursquarePhotoResults);
 	return `
 	<div class="js-foursquare-results col-4">
 	<div class="result-description">
-	<img src="" class="result-img">
-	<h3>${result.venue.name}</h3>
+	<div id= '${venueID}-photo'></div>
 	<p><img src="${result.venue.categories[0].icon.prefix}bg_32${result.venue.categories[0].icon.suffix}" class="category-img"></p>
 	</span>
                 <span class="icon-text">
@@ -122,7 +124,7 @@ function createFoursquareHTML(result) {
 //display Foursquare seach results - callback function
 function displayFoursquareResults(data) {
 
-console.log(JSON.stringify(data))
+//console.log(JSON.stringify(data))
 	const foursquareResults = data.response.groups[0].items.map((item) => createFoursquareHTML(item));
 	$('.venues').html(foursquareResults);
 }
@@ -138,6 +140,7 @@ function submitCategoryButton () {
 		const city = $(this).parent().data('city');
 
 		getDataFromFoursquareAPI(displayFoursquareResults, category, city);
+
         scrollToFoursquareResults();
         $('.js-next-button').prop('hidden', false);
 	})
@@ -169,6 +172,33 @@ function handlePrevButton () {
   });
 }
 
+// Foursquare photo API request
+function getFoursquarePhoto(venueID, callback) {
+	const FOUSRQUARE_PHOTO_URL = `https://api.foursquare.com/v2/venues/${venueID}`;
+
+    const query = {
+		client_id: 'DPOUX5ELF3MXCHKHK2DW1X4PNJXQL1H0I03LHTXLYKIVIBBM',
+		client_secret: '3Z2NZ2PVA01NDLQVSI0SGJUXGXUPENANW0GFV3RTIZQE3CZ4',
+		v: 20180520
+	}
+	$.getJSON(FOUSRQUARE_PHOTO_URL, query, callback)
+
+}
+
+function generateFoursquarePhotoResults(photoResults) {
+
+	return `
+	<img class='image-result' src='https://igx.4sqi.net/img/general/300x400/${photoResults.response.venue.photos.groups[0].items[0].suffix}'
+	alt='${photoResults.response.venue.name}'></div>
+	<h3><a href='${photoResults.response.venue.url}' target='_blank'>${photoResults.response.venue.name}</a></h3>
+	`
+}
+
+function renderFoursquarePhotoResults(data, venueID) {
+	let foursquarePhotos = generateFoursquarePhotoResults(data);
+	$(`#${venueID}`).html(foursquarePhotos);
+	console.log(foursquarePhotos);
+}
 
 function setupEventHandlers() {
 	watchSubmit();
