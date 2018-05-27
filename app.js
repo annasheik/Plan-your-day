@@ -67,6 +67,7 @@ function watchSubmit() {
 		console.log("Hello World");
 		event.preventDefault();
 		$('.weather-display').prop('hidden', false);
+		$('.venues-page').prop('hidden', true);
 		const city = $('.search-query').val();
 		getDataFromWeatherAPI(city, displayWeatherResults);
 	
@@ -139,7 +140,7 @@ function submitCategoryButton () {
 	$('main').on('click', '.js-category-button', function(event) {
 		const category = $(this).data('category');
 		const city = $(this).parent().data('city');
-
+        $('.venues-page').prop('hidden', false);
 		getDataFromFoursquareAPI(displayFoursquareResults, category, city);
 
         scrollToFoursquareResults();
