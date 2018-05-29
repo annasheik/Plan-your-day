@@ -141,6 +141,7 @@ function submitCategoryButton () {
 		const category = $(this).data('category');
 		const city = $(this).parent().data('city');
         $('.venues-page').prop('hidden', false);
+        $('footer').prop('hidden', false);
 		getDataFromFoursquareAPI(displayFoursquareResults, category, city);
 
         scrollToFoursquareResults();

@@ -8,6 +8,7 @@
           src="https://code.jquery.com/jquery-3.2.1.min.js"
           integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
           crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
     <meta name="description" content="Find out the weather and the best venues around you in any city in the world">
     <meta charset="utf-8">
     <meta name="keywords" content="things to do, what do to todays, events in my city today, trip planner, weather today, weather in my city">
@@ -20,7 +21,7 @@
 
   <body>
   	
-  	<div class="start-display">
+  	<div class="start-display" id="start-display">
   		<div class="logo-display">
 	  		<header role="banner">
 	  			<h1 class="logo">Plan your day</h1>
@@ -50,6 +51,14 @@
 	  
         
 	</main>
+	<footer role="contentinfo" hidden>
+		<div class="new-search">
+			<a class="back-to-search" href="#start-display">
+				<i class="fas fa-angle-double-up"></i><i class="fas fa-search"></i>
+			</a>
+			
+		</div>
+	</footer>
 
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnrOYrouZz_CDSghCNa7nK3QJCClFq18U&libraries=places&callback=activatePlacesSearch""></script>
