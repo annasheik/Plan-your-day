@@ -107,6 +107,7 @@ function createFoursquareHTML(result) {
 	<div class="js-foursquare-results col-4">
 	<div class="result-description">
 	<div id='${venueID}-photo'></div>
+	<h3 class='venue-name'>${result.venue.name}</h3>
 	<p><img src="${result.venue.categories[0].icon.prefix}bg_32${result.venue.categories[0].icon.suffix}" class="category-img"></p>
 	</span>
                 <span class="icon-text">
@@ -189,18 +190,18 @@ function getFoursquarePhoto(venueID, callback) {
 }
 
 function generateFoursquarePhotoResults(photoResults) {
-
+    const photoUrl = photoResults.prefix + '300x500' + photoResults.suffix;
 	return `
-	<img class='image-result' src='https://igx.4sqi.net/img/general/300x400/${photoResults.response.venue.photos.groups[0].items.suffix}'
-	alt='${photoResults.response.venue.name}'></div>
-	<h3><a href='${photoResults.response.venue.url}' target='_blank'>${photoResults.response.venue.name}</a></h3>
+	<img class='image-result' src='${photoUrl}'
+	alt='image of a venue'></div>
+	
 	`
 }
 
 function renderFoursquarePhotoResults(data, venueID) {
-	let foursquarePhotos = data.response.venue.photos.groups[0].items.map((photoResults) => generateFoursquarePhotoResults(photoResults));
-	$(`#${venueID}-photo`).html(foursquarePhotos);
-	console.log(foursquarePhotos);
+	let foursquarePhotos = data.response.venue.photos.groups[0].items.map((item) => generateFoursquarePhotoResults(item));
+	$(`#${data.response.venue.id}-photo`).html(foursquarePhotos);
+	
 }
 
 function setupEventHandlers() {
