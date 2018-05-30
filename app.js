@@ -101,6 +101,7 @@ function getDataFromFoursquareAPI (callback, category, city) {
 
 //Create Foursquare results HTML
 function createFoursquareHTML(result) {
+	console.log(result);
 	venueID = result.venue.id;
 	getFoursquarePhoto(venueID, renderFoursquarePhotoResults);
 	return `
@@ -194,8 +195,8 @@ function generateFoursquarePhotoResults(photoResults) {
 	return `
 	<img class='image-result' src='${photoUrl}'
 	alt='image of a venue'></div>
-	
 	`
+
 }
 
 function renderFoursquarePhotoResults(data, venueID) {
@@ -207,6 +208,7 @@ function renderFoursquarePhotoResults(data, venueID) {
     else {
 	let foursquarePhotos = data.response.venue.photos.groups[0].items.map((item) => generateFoursquarePhotoResults(item));
 	$(`#${data.response.venue.id}-photo`).html(foursquarePhotos);
+
 	}
 }
 
