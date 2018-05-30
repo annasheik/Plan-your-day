@@ -199,9 +199,15 @@ function generateFoursquarePhotoResults(photoResults) {
 }
 
 function renderFoursquarePhotoResults(data, venueID) {
+	// in event there are no photos display 'No Image Available'
+    if (data.response.venue.photos.groups[0].items.length === 0) {
+    	let noImage = `<img class='image-result' alt='No image available' src='https://vignette.wikia.nocookie.net/pineapplepedia/images/3/3c/No-images-placeholder.png/revision/latest?cb=20171113170721'>`;
+    	$(`#${data.response.venue.id}-photo`).html(noImage);
+    }
+    else {
 	let foursquarePhotos = data.response.venue.photos.groups[0].items.map((item) => generateFoursquarePhotoResults(item));
 	$(`#${data.response.venue.id}-photo`).html(foursquarePhotos);
-	
+	}
 }
 
 function setupEventHandlers() {
