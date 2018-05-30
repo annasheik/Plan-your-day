@@ -108,7 +108,7 @@ function createFoursquareHTML(result) {
 	<div class="js-foursquare-results col-4">
 	<div class="result-description">
 	<div id='${venueID}-photo'></div>
-	<h3 class='venue-name'>${result.venue.name}</h3>
+	<h3 class='venue-name' id='${venueID}-name'></h3>
 	<p><img src="${result.venue.categories[0].icon.prefix}bg_32${result.venue.categories[0].icon.suffix}" class="category-img"></p>
 	</span>
                 <span class="icon-text">
@@ -117,7 +117,8 @@ function createFoursquareHTML(result) {
 	<p class="result-address">${result.venue.location.formattedAddress[0]}</p>
 	<p class="result-address">${result.venue.location.formattedAddress[1]}</p>	
 	<p class="result-address">${result.venue.location.formattedAddress[2]}</p>
-	
+    <div id='${venueID}-link'></div>
+
 	</div>
 	</div> `
 
@@ -196,7 +197,6 @@ function generateFoursquarePhotoResults(photoResults) {
 	<img class='image-result' src='${photoUrl}'
 	alt='image of a venue'></div>
 	`
-
 }
 
 function renderFoursquarePhotoResults(data, venueID) {
@@ -207,7 +207,9 @@ function renderFoursquarePhotoResults(data, venueID) {
     }
     else {
 	let foursquarePhotos = data.response.venue.photos.groups[0].items.map((item) => generateFoursquarePhotoResults(item));
+	let foursquareLink = data.response.venue.url;
 	$(`#${data.response.venue.id}-photo`).html(foursquarePhotos);
+    $(`#${data.response.venue.id}-name`).html(`<a href='${foursquareLink}' target='_blank'>${data.response.venue.name}</a>`);
 
 	}
 }
