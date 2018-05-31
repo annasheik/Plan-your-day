@@ -40,10 +40,10 @@ return `
 </div>
 
 <nav role="navigation" class="venues-nav" data-city="${city}">
-	<button class="js-category-button" data-category="food">Food</button>
-	<button class="js-category-button" data-category="events">Events</button>
-	<button class="js-category-button" data-category="arts">Entertainment</button>
-	<button class="js-category-button" data-category="outdoors">Outdoors</button>
+	<button class="js-category-button" data-category="food" aria-label='Button for category Food'>Food</button>
+	<button class="js-category-button" data-category="events" aria-label='Button for category Events'>Events</button>
+	<button class="js-category-button" data-category="arts" aria-label='Button for category Arts and Entertainment'>Entertainment</button>
+	<button class="js-category-button" data-category="outdoors" aria-label='Button for category Outdoors'>Outdoors</button>
 </nav> `
 }
 //Display weather search results - a callback function
@@ -109,7 +109,8 @@ function createFoursquareHTML(result) {
 	<div class="result-description">
 	<div id='${venueID}-photo'></div>
 	<h3 class='venue-name' id='${venueID}-name'></h3>
-	<p><img src="${result.venue.categories[0].icon.prefix}bg_32${result.venue.categories[0].icon.suffix}" class="category-img"></p>
+	<p><img src="${result.venue.categories[0].icon.prefix}bg_32${result.venue.categories[0].icon.suffix}" class="category-img" 
+	alt='Category icon of ${result.venue.categories[0].name}'></p>
 	</span>
                 <span class="icon-text">
                     ${result.venue.categories[0].name}
@@ -209,7 +210,7 @@ function renderFoursquarePhotoResults(data, venueID) {
 	let foursquarePhotos = data.response.venue.photos.groups[0].items.map((item) => generateFoursquarePhotoResults(item));
 	let foursquareLink = data.response.venue.url;
 	$(`#${data.response.venue.id}-photo`).html(foursquarePhotos);
-    $(`#${data.response.venue.id}-name`).html(`<a href='${foursquareLink}' target='_blank'>${data.response.venue.name}</a>`);
+    $(`#${data.response.venue.id}-name`).html(`<a href='${foursquareLink}' target='_blank'>${data.response.venue.name} aria-label="Link to a venue website"</a>`);
 
 	}
 }
@@ -223,7 +224,6 @@ function setupEventHandlers() {
 
 
 
-//autocomplete location name in form
 function activatePlacesSearch() {
     let options = {
         types: ['(regions)']

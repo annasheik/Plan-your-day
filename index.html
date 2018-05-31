@@ -16,8 +16,6 @@
     <meta name="viewport" content="width=device-width">
 
   </head>
-  
-  </head>
 
   <body>
   	
@@ -36,27 +34,23 @@
   	 </div>
 
   	 <main role="main">
-	  	 <div class="weather-display" hidden>
+	  	 <div class="weather-display" hidden aria-live="assertive">
 	  	 	<!-- Weather search results go here-->
 	  	 
          </div>  
-         <div class="venues-page" hidden>
+         <div class="venues-page" hidden aria-live="assertive">
             	<div class="venues row">
 	  		<!-- Foursquare Results go here -->
-	  		
 	  	       </div>
 	  	       <button class="js-prev-button" hidden>Prev<button class='js-next-button' hidden>Next</button>
-        </div>
-
-	  
-        
+        </div>   
 	</main>
+
 	<footer role="contentinfo" hidden>
 		<div class="new-search">
-			<a class="back-to-search" href="#start-display">
+			<a class="back-to-search" href="#start-display" aria-label="return to a search">
 				<i class="fas fa-angle-double-up"></i><i class="fas fa-search"></i>
-			</a>
-			
+			</a>	
 		</div>
 	</footer>
 
