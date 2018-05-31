@@ -20,7 +20,11 @@ function getDataFromWeatherAPI (city, callback) {
 		APPID: key,
 		units: 'metric'
 	};
-	$.getJSON(OpenWeatherMap_URL, query, success);
+	$.getJSON(OpenWeatherMap_URL, query, success)
+	.fail(function() {
+		$('.weather-display').html("<div class='result'><p>Something went wrong! Please, try again!</p></div>");
+	});
+
 }
 
 // Create the weather result HTML
@@ -97,6 +101,9 @@ function getDataFromFoursquareAPI (callback, category, city) {
 	};
 	
 	$.getJSON(FOUSRQUARE_URL, query, callback)
+	.fail(function() {
+		$('.venues').html("<div><p>No results found! Try different location!</p></div>");
+	});
 } 
 
 //Create Foursquare results HTML
@@ -210,7 +217,7 @@ function renderFoursquarePhotoResults(data, venueID) {
 	let foursquarePhotos = data.response.venue.photos.groups[0].items.map((item) => generateFoursquarePhotoResults(item));
 	let foursquareLink = data.response.venue.url;
 	$(`#${data.response.venue.id}-photo`).html(foursquarePhotos);
-    $(`#${data.response.venue.id}-name`).html(`<a href='${foursquareLink}' target='_blank'>${data.response.venue.name} aria-label="Link to a venue website"</a>`);
+    $(`#${data.response.venue.id}-name`).html(`<a href='${foursquareLink}' target='_blank' aria-label="Link to a venue website">${data.response.venue.name}</a>`);
 
 	}
 }
