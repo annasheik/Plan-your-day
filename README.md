@@ -5,7 +5,7 @@ The website pulls data from third-party API's: OpenWeatherMap.org and Foursquare
 ## About
 The user is able to find out the current weather in any location in the world and also search
 for venues around, sorted by categories. 
-They user is provided with the photos for each venue, it's address and the url to the venue's website.
+The user is provided with the photos for each venue, its address and the url to the venue's website.
 
 ## Screenshots
 Landing page:
