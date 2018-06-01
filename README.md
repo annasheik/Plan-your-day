@@ -10,11 +10,15 @@ The user is provided with the photos for each venue, its address and the url to 
 ## Screenshots
 Landing page:
 ![login screen](screenshots/screen-1.png)
+
 Weather page:
 ![weather page](screenshots/screen-2.png)
+
 Venues page:
 ![venues page](screenshots/screen-3.png)
+
 ![venues page](screenshots/screen-4.png)
+
 ![venues page](screenshots/screen-5.png)
 
 ## Built With
@@ -22,6 +26,7 @@ Venues page:
 - CSS
 - jQuery
 - JavaScript
+
 The app is fully responsive.
 
 ## Demo
