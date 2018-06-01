@@ -20,8 +20,8 @@ function getDataFromWeatherAPI (city, callback) {
 	};
 	$.getJSON(OpenWeatherMap_URL, query, success)
 	.fail(function() {
-		$('.weather-display').html('<div class='result'><p>Something went wrong! Please, try again!</p></div>');
-	});
+		$('.weather-display').html("<div class='result'><p>Something went wrong! Please, try again!</p></div>")
+	})
 }
 
 // Create the weather result HTML
