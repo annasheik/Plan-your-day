@@ -41,10 +41,6 @@ input[type="text"] {
 .js-form-submit {
 	cursor: pointer;
 }
-/*::placeholder {
-	color: black;
-	opacity: 1;
-}*/
 
 /* Weather-display */
 .weather-display {
@@ -59,9 +55,8 @@ input[type="text"] {
     margin-bottom: 100px;
 }
 
-
 .weather-results {
-     margin-left: auto;
+    margin-left: auto;
     margin-right: auto;
     text-align: center;
     width: 83%;
@@ -71,25 +66,31 @@ input[type="text"] {
     max-width: 900px;
     background-color: rgba(255, 255, 255, 0.8);
 }
+
 .h2-weather {
 	font-size: 32px;
 }
+
 .weather-span {
 	font-size: bold;
 }
+
 .weather-p {
 	font-size: 18px;
 }
+
 .p-temp {
 	font-size: 26px;
     font-weight: 550;
 }
+
 .weather-icon {
 	width: 66px;
     height: 66px;
      display: inline-block;
     margin-left: 18px;
 }
+
 .weatherDescription {
 	font-size: 20px;
     font-style: italic;
@@ -125,12 +126,14 @@ input[type="text"] {
 	margin-top: 30px;
 	text-align: center;
 }
+
 .image-result {
 	width: 80%;
 	-webkit-box-shadow: 10px 10px 24px 2px rgba(199,199,199,1);
 	-moz-box-shadow: 10px 10px 24px 2px rgba(199,199,199,1);
 	box-shadow: 10px 10px 24px 2px rgba(199,199,199,1);
 }
+
 .result-description {
 	text-align: center;
     background-color: #d3d3d37a;
@@ -140,9 +143,11 @@ input[type="text"] {
 	-moz-box-shadow: 10px 10px 24px 2px rgba(199,199,199,1);
 	box-shadow: 10px 10px 24px 2px rgba(199,199,199,1);
 }
+
 .icon-text {
 	font-style: italic;
 }
+
 .js-prev-button, .js-next-button {
 	width: 20%;
     border: 1px solid black;
@@ -152,10 +157,12 @@ input[type="text"] {
     margin-bottom: 20px;
     cursor: pointer;
 }
+
 .js-prev-button:hover, .js-next-button:hover, .js-prev-button:focus, .js-next-button:focus {
 		background-color: rgba(218, 218, 218, 0.45);
 
 }
+
 @media only screen and (max-width: 640px) {
 	.js-category-button {
 		width: 40%;
@@ -165,11 +172,13 @@ input[type="text"] {
 		padding-top: 24%;
 	}
 }
+
 @media only screen and (max-width: 440px){
 	h1.logo {
     font-size: 31px;
     margin-top: -2px;
 }
+
 .logo-description {
     margin-top: -22px;
     font-size: 12px;
@@ -187,10 +196,11 @@ search-form {
 	text-align: center;
     margin-bottom: 24px;
 }
+
 .fa-search {
-	
     height: 17px;
 }
+
 .fa-angle-double-up {
   font-size: 23px !important;
   color: gray;
@@ -208,6 +218,7 @@ search-form {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
+
 @-moz-keyframes blinker {  
   0% { opacity: 0.7; }
   50% { opacity: 0.1; }
@@ -258,6 +269,7 @@ search-form {
    * Half a gutter is 10px, 10/960 (context) = 1.041666%
    *
    */
+   
   padding-left: 1.04166666%;
   padding-right: 1.04166666%;
 }

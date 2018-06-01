@@ -1,14 +1,12 @@
 // Running text in searchfield
 var searchEx = [ 'San Diego', 'London', 'Seattle', 'San Francisco', 'New York', 'Vancouver', 'Paris', 'Athens'];
-  setInterval(function() {
-    $("input#js-search").attr("placeholder", searchEx[searchEx.push(searchEx.shift())-1]);
+setInterval(function() {
+    $('input#js-search').attr('placeholder', searchEx[searchEx.push(searchEx.shift())-1]);
   }, 2000);
 
 let offsetToken = 0;
 
 //OpenWeatherMap API
-//Get data from OpenWeatherMap API
-
 function getDataFromWeatherAPI (city, callback) {
 	const OpenWeatherMap_URL = 'https://api.openweathermap.org/data/2.5/weather?id=524901';
 	const key = '023c7f0c54ac98ec1eda11f7fc2a77b2';
@@ -22,9 +20,8 @@ function getDataFromWeatherAPI (city, callback) {
 	};
 	$.getJSON(OpenWeatherMap_URL, query, success)
 	.fail(function() {
-		$('.weather-display').html("<div class='result'><p>Something went wrong! Please, try again!</p></div>");
+		$('.weather-display').html('<div class='result'><p>Something went wrong! Please, try again!</p></div>');
 	});
-
 }
 
 // Create the weather result HTML
@@ -53,7 +50,6 @@ return `
 //Display weather search results - a callback function
 function displayWeatherResults(city, data) {
 	const results = createWeatherHTML(city, data);
-	
 	$('.weather-display').html(results);
 }
 
@@ -62,8 +58,6 @@ function scrollToWeatherResults() {
 	$('html, body').animate({
 		scrollTop: $('.weather-display').offset().top}, 700);
 }
-
-// TODO: create err function
 
 //event listener for a search form
 function watchSubmit() {
@@ -80,12 +74,9 @@ function watchSubmit() {
 	});
 }
 
-
-
 //Get data from Foursquare API 
 function getDataFromFoursquareAPI (callback, category, city) {
 	const FOUSRQUARE_URL = 'https://api.foursquare.com/v2/venues/explore?';
-	
 	
 	const query = {
 		client_id: 'DPOUX5ELF3MXCHKHK2DW1X4PNJXQL1H0I03LHTXLYKIVIBBM',
@@ -95,9 +86,7 @@ function getDataFromFoursquareAPI (callback, category, city) {
 		section: category,
 		limit: 9,
 		v: 20180520,
-		offset: offsetToken
-		
-
+		offset: offsetToken	
 	};
 	
 	$.getJSON(FOUSRQUARE_URL, query, callback)
@@ -129,14 +118,10 @@ function createFoursquareHTML(result) {
 
 	</div>
 	</div> `
-
 }
-
-
 
 //display Foursquare seach results - callback function
 function displayFoursquareResults(data) {
-
 //console.log(JSON.stringify(data))
 	const foursquareResults = data.response.groups[0].items.map((item) => createFoursquareHTML(item));
 	$('.venues').html(foursquareResults);
@@ -196,7 +181,6 @@ function getFoursquarePhoto(venueID, callback) {
 		v: 20180520
 	}
 	$.getJSON(FOUSRQUARE_PHOTO_URL, query, callback)
-
 }
 
 function generateFoursquarePhotoResults(photoResults) {
@@ -228,8 +212,6 @@ function setupEventHandlers() {
 	handleNextButton();
 	handlePrevButton();
 }
-
-
 
 function activatePlacesSearch() {
     let options = {
