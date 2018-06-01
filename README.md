@@ -1,6 +1,7 @@
 # Plan Your Day
 An application to find out the weather and the best venues around you in any city in the world. 
-The website pulls data from third-party API's: OpenWeatherMap.org and Foursquare.com
+The website pulls data from third-party API's: OpenWeatherMap.org and Foursquare.com and
+Google Places API to verify the location.
 
 ## About
 The user is able to find out the current weather in any location in the world and also search
