@@ -97,7 +97,7 @@ function getDataFromFoursquareAPI (callback, category, city) {
 
 //Create Foursquare results HTML
 function createFoursquareHTML(result) {
-	console.log(result);
+	
 	venueID = result.venue.id;
 	getFoursquarePhoto(venueID, renderFoursquarePhotoResults);
 	return `
@@ -178,7 +178,8 @@ function getFoursquarePhoto(venueID, callback) {
     const query = {
 		client_id: 'DPOUX5ELF3MXCHKHK2DW1X4PNJXQL1H0I03LHTXLYKIVIBBM',
 		client_secret: '3Z2NZ2PVA01NDLQVSI0SGJUXGXUPENANW0GFV3RTIZQE3CZ4',
-		v: 20180520
+		v: 20180520,
+		
 	}
 	$.getJSON(FOUSRQUARE_PHOTO_URL, query, callback)
 }
@@ -193,14 +194,16 @@ function generateFoursquarePhotoResults(photoResults) {
 
 function renderFoursquarePhotoResults(data, venueID) {
 	// in event there are no photos display 'No Image Available'
+	console.log(data);
     if (data.response.venue.photos.groups[0].items.length === 0) {
     	let noImage = `<img class='image-result' alt='No image available' src='https://vignette.wikia.nocookie.net/pineapplepedia/images/3/3c/No-images-placeholder.png/revision/latest?cb=20171113170721'>`;
     	$(`#${data.response.venue.id}-photo`).html(noImage);
     }
     else {
-	let foursquarePhotos = data.response.venue.photos.groups[0].items.map((item) => generateFoursquarePhotoResults(item));
+	//let foursquarePhotos = data.response.venue.photos.groups[0].items[0].map((item) => generateFoursquarePhotoResults(item));
+    let foursquarePhotos = data.response.venue.photos.groups[0].items[0];
 	let foursquareLink = data.response.venue.url;
-	$(`#${data.response.venue.id}-photo`).html(foursquarePhotos);
+	$(`#${data.response.venue.id}-photo`).html(generateFoursquarePhotoResults(foursquarePhotos));
     $(`#${data.response.venue.id}-name`).html(`<a href='${foursquareLink}' target='_blank' aria-label="Link to a venue website">${data.response.venue.name}</a>`);
 
 	}
