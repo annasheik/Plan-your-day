@@ -32,8 +32,9 @@ function createWeatherHTML (city, result) {
 return `
 <div class="weather-results">
 	<h2 class="h2-weather">Current weather in ${result.name}</h2>
-	<p class="p-temp"><span>${(result.main.temp).toFixed(0)} &#8451;  | ${((result.main.temp * 9/5) +32).toFixed(0)} &#8457;</span><img src="http://openweathermap.org/img/w/${result.weather[0].icon}.png" class="weather-icon"
-	alt="weather icon of ${result.weather[0].main}"></p>
+	<p class="p-temp"><span>${(result.main.temp).toFixed(0)} &#8451;  | ${((result.main.temp * 9/5) +32).toFixed(0)} &#8457;</span><img 
+	src="http://openweathermap.org/img/w/${result.weather[0].icon}.png" class="weather-icon"
+	alt="weather icon of ${result.weather[0].main}" srcset="http://openweathermap.org/img/w/${result.weather[0].icon}.png 2x"></p>
 	<p class="weatherDescription">${result.weather[0].main}</p>
 	<p class='weather-p'><span class='weather-span'>Description:</span> ${result.weather[0].description}</p>
 	<p class='weather-p'><span class='weather-span'>Humidity:</span> ${result.main.humidity}%</p>
